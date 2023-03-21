@@ -1,0 +1,52 @@
+// its not a complete one still working on this
+// code starts from here 
+
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+        HashMap<String, Double> menu = new HashMap<>();
+        menu.put("Biryani", 120.00);
+        menu.put("Butter Chicken", 200.00);
+        menu.put("Tandoori Chicken", 250.00);
+        menu.put("Samosa", 20.00);
+        menu.put("Naan", 10.00);
+
+        Scanner scanner = new Scanner(System.in);
+
+        String order = "";
+        double totalCost = 0.0;
+
+        System.out.println("Menu:");
+        for (String item : menu.keySet()) {
+            System.out.printf("%s: Rs%.2f\n", item, menu.get(item));
+        }
+        System.out.println();
+
+        while (true) {
+            System.out.print("Enter item name then click enter on your device then enter \"done\" to finish order: ");
+            String item = scanner.nextLine();
+            if (item.equals("done")) {
+                break;
+            }
+            if (!menu.containsKey(item)) {
+                System.out.println("Invalid item. Please try again.");
+                continue;
+            }
+            order += item + "\n";
+            totalCost += menu.get(item);
+        }
+
+        System.out.println();
+        System.out.println("Order:");
+        System.out.println(order.trim());
+        System.out.printf("Total: Rs%.2f\n", totalCost);
+
+        scanner.close();
+    }
+
+}
+
